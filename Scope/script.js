@@ -7,4 +7,5 @@ function onClick() {
   return square(5)
 }
 
-console.log(onClick())
+console.log(onClick()) 
+// console.log(onClick)

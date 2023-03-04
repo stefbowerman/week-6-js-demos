@@ -1,18 +1,30 @@
-// Get Access to the button
-const button = document.getElementById('clickable-button')
+const HUE_ROTATION_AMOUNT = 2
+const GRADIENT_ROTATION_AMOUNT = 3
+const INTERVAL_MS = 1000 / 60
 
-// Add event listener
-button.addEventListener('click', rotateBackgroundColor)
+// These are our color values
+let hue = 0
+const saturation = 95
+const lightness = 65
 
-function updateBackground() {
-  console.log('update background')
+// This is our angle value
+let gradientAngle = 0
 
-  // Logic for getting the new background value
-  // -
-  // goes here ->
+function updateBackgroundColor() {
+  // Update our "hue" variable by rotating by a specific amount
+  hue = hue + HUE_ROTATION_AMOUNT
 
-  // Update the background of the page
-  //
-  // here ->
+  const hsl = `hsl(${hue} ${saturation}% ${lightness}%)`
+  const hsl2 = `hsl(${hue + 180} ${saturation}% ${lightness}%)`
+
+  // Update our "gradientAngle" variable by rotating by a specific amount
+  gradientAngle = gradientAngle + GRADIENT_ROTATION_AMOUNT
+
+  // Create the linear gradient value using the correct CSS syntax
+  const gradient = `linear-gradient(${gradientAngle}deg, ${hsl}, ${hsl2})`
+  
+  // Update the background of the body element on the page
+  document.body.style.background = gradient
 }
 
+setInterval(updateBackgroundColor, INTERVAL_MS)
